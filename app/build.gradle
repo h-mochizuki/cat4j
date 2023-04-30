@@ -21,11 +21,17 @@ tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 ['sourceCompatibility', 'targetCompatibility'].each { java."$it" = '17' }
 
 jar {
-    applicationName = 'cat4j'
+    archivesBaseName = 'cat4j'
+}
+
+distributions {
+    main {
+        distributionBaseName = 'cat4j'
+    }
 }
 
 application {
-    mainClass = 'gmochmoch.Cat4j'
+    mainClass = 'gmochmoch.cat4j.Cat4j'
 }
 
 startScripts {

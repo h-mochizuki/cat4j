@@ -1,4 +1,4 @@
-package gmochmoch;
+package gmochmoch.cat4j;
 
 import gmochmoch.cat4j.Concatenate;
 

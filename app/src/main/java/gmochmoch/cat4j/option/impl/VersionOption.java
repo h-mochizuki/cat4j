@@ -1,6 +1,6 @@
 package gmochmoch.cat4j.option.impl;
 
-import gmochmoch.Cat4j;
+import gmochmoch.cat4j.Cat4j;
 import gmochmoch.cat4j.exception.CancelException;
 import gmochmoch.cat4j.option.IOption;
 
