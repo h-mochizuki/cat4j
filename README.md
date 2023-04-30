@@ -49,6 +49,16 @@ This is the contents of example2.txt.
 $
 ```
 
+## ビルド方法
+
+コマンドラインでプロジェクトディレクトリに移動後、次のコマンドを実行してください。
+
+```
+./gradlew build
+```
+
+`app/build/distributions` ディレクトリの下に `cat4j.zip` が作成されます。
+
 ## 動作環境
 このプログラムは、以下の環境で動作を確認しています。
 
