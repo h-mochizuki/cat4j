@@ -49,6 +49,11 @@ public class HelpOption implements IOption {
         throw new CancelException(HELP_FORMAT.formatted(desc));
     }
 
+    /**
+     * オプション定義を取得してオプションの文字でソートして返します
+     *
+     * @return ソート後のオプション定義一覧
+     */
     private List<Options> sortedOptions() {
         List<Options> hasShort = new ArrayList<>();
         List<Options> noShort = new ArrayList<>();

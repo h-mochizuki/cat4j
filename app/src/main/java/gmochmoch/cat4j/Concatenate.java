@@ -15,7 +15,7 @@ import java.util.Objects;
 import static gmochmoch.cat4j.Const.STD_INPUT_PARAM;
 
 /**
- * 引数もしくは標準入力で渡された内容を標準出力で表示します
+ * 引数で指定されたファイルもしくは標準入力で渡された内容を標準出力で表示します
  */
 public class Concatenate {
 
@@ -24,6 +24,12 @@ public class Concatenate {
     // 入力ストリームを再読み込みしないためのフラグ
     private boolean inputStreamClosed = false;
 
+    /**
+     * 引数を解析し、指定されたファイル内容もしくは標準入力内容を標準出力で表示します
+     *
+     * @param args 引数
+     * @return true:全てのファイルが正常に出力された<br/>false:出力の際に問題があった
+     */
     public boolean concatenate(String... args) {
         try {
             final OptionHandler handler = new OptionHandler();
@@ -40,10 +46,17 @@ public class Concatenate {
         }
     }
 
+    /**
+     * 指定されたひとつのファイル、もしくは標準入力の内容を標準出力で表示します
+     *
+     * @param arg     ファイルもしくは標準入力フラグ
+     * @param handler オプションを管理するハンドラー
+     * @return true:正常に出力された<br/>false:出力の際に問題があった
+     */
     private boolean concatenate(String arg, OptionHandler handler) {
         try (BufferedReader reader = new BufferedReader(getInputStreamReader(arg))) {
             char[] buffer = new char[BUFFER_SIZE];
-            for (int size; (size = reader.read(buffer)) != -1;) {
+            for (int size; (size = reader.read(buffer)) != -1; ) {
                 System.out.print(handler.convert(new String(buffer, 0, size)));
             }
             return true;
