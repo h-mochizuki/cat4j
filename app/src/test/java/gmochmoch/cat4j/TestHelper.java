@@ -15,16 +15,6 @@ import java.util.stream.Stream;
 public class TestHelper {
 
     /**
-     * 改行コードをシステムのものに揃えます
-     *
-     * @param str 対象文字列
-     * @return 改行コードを修正した文字列
-     */
-    public static String lfc(String str) {
-        return str.replaceAll("[\r\n]", System.lineSeparator());
-    }
-
-    /**
      * 標準入力後に指定された処理を実行します
      *
      * @param input    入力文字列
@@ -122,13 +112,6 @@ public class TestHelper {
         private SysOut(ByteArrayOutputStream os) {
             super(new BufferedOutputStream(os));
             this.os = os;
-        }
-
-        /**
-         * 出力内容を削除します
-         */
-        public void clear() {
-            os.reset();
         }
 
         /**
