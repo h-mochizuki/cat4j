@@ -1,7 +1,5 @@
 package gmochmoch.cat4j;
 
-import gmochmoch.cat4j.Concatenate;
-
 /**
  * CatのJava実装です
  */
