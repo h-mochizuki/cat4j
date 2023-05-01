@@ -71,12 +71,22 @@ public class TestHelper {
     }
 
     /**
+     * 標準出力とエラー出力を監視します
+     *
+     * @param consumer 実行したい処理
+     * @throws Exception 実行時例外
+     */
+    public static synchronized void monitor(ThrowableBiConsumer<SysOut, SysOut> consumer) throws Exception {
+        monitorOut(out -> monitorErr(err -> consumer.accept(out, err)));
+    }
+
+    /**
      * 標準出力を監視します
      *
      * @param consumer 実行したい処理
      * @throws Exception 実行時例外
      */
-    public static synchronized void monitor(ThrowableConsumer<SysOut> consumer)
+    public static synchronized void monitorOut(ThrowableConsumer<SysOut> consumer)
             throws Exception {
         final PrintStream systemOut = System.out;
         try (SysOut out = new SysOut()) {
@@ -88,7 +98,24 @@ public class TestHelper {
     }
 
     /**
-     * 標準出力のラッパークラス
+     * エラー出力を監視します
+     *
+     * @param consumer 実行したい処理
+     * @throws Exception 実行時例外
+     */
+    public static synchronized void monitorErr(ThrowableConsumer<SysOut> consumer)
+            throws Exception {
+        final PrintStream systemErr = System.err;
+        try (SysOut err = new SysOut()) {
+            System.setErr(err);
+            consumer.accept(err);
+        } finally {
+            System.setErr(systemErr);
+        }
+    }
+
+    /**
+     * {@link PrintStream} のラッパークラス
      */
     public static class SysOut extends PrintStream {
 
@@ -130,7 +157,7 @@ public class TestHelper {
          * @return 出力内容の {@link Stream}
          */
         public Stream<String> output() {
-            return Stream.of(read().split(System.lineSeparator()));
+            return Stream.of(read().split("[\r\n]"));
         }
     }
 
@@ -163,5 +190,24 @@ public class TestHelper {
          * @throws Exception 実行時例外
          */
         void accept(T t) throws Exception;
+    }
+
+    /**
+     * 例外を投げられる{@link java.util.function.BiConsumer}インターフェース
+     *
+     * @param <T> 引数クラス
+     * @param <U> 引数クラス
+     */
+    @FunctionalInterface
+    public interface ThrowableBiConsumer<T, U> {
+
+        /**
+         * 処理を実行します
+         *
+         * @param t 引数
+         * @param u 引数
+         * @throws Exception 実行時例外
+         */
+        void accept(T t, U u) throws Exception;
     }
 }
