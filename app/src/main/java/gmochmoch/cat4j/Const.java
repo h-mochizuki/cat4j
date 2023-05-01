@@ -5,6 +5,8 @@ package gmochmoch.cat4j;
  */
 public interface Const {
 
+    /** 改行文字 */
+    String LINE_SEPARATOR = "\n";
     /** 空文字 */
     String EMPTY = "";
     /** 標準入力用パラメータ */
