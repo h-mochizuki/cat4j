@@ -19,6 +19,8 @@ public class OptionHandler {
     private final List<String> remains = new ArrayList<>();
     // 指定されたオプション
     private final List<IOption> options = new ArrayList<>();
+    // オプション間で共有する情報
+    private final OptionContext context = new OptionContext();
 
     /**
      * 起動引数からオプションとファイルなどを振り分けます
@@ -49,7 +51,7 @@ public class OptionHandler {
                 .sorted((o1, o2) -> o1.compareTo(o2) * -1)
                 .map(o -> o.option).toList());
         // 初期化処理は入力順で実行
-        optionSet.stream().map(o -> o.option).forEach(IOption::init);
+        optionSet.stream().map(o -> o.option).forEach(o -> o.init(context));
 
         // 空の場合は標準入力を追加
         if (remains.isEmpty()) {
@@ -74,7 +76,7 @@ public class OptionHandler {
      */
     public String convert(String text) {
         for (IOption opt : options) {
-            text = opt.convert(text);
+            text = opt.convert(text, context);
         }
         return text;
     }

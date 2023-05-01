@@ -3,6 +3,7 @@ package gmochmoch.cat4j.option.impl;
 import gmochmoch.cat4j.Cat4j;
 import gmochmoch.cat4j.exception.CancelException;
 import gmochmoch.cat4j.option.IOption;
+import gmochmoch.cat4j.option.OptionContext;
 
 import java.io.File;
 import java.net.URI;
@@ -30,7 +31,7 @@ public class VersionOption implements IOption {
      * バージョンを取得して処理をキャンセルさせます
      */
     @Override
-    public void init() {
+    public void init(OptionContext context) {
         throw new CancelException(
                 String.format(VERSION_FORM, Cat4j.class.getSimpleName(), getVersion()));
     }

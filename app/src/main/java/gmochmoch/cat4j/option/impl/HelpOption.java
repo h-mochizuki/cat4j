@@ -3,6 +3,7 @@ package gmochmoch.cat4j.option.impl;
 import gmochmoch.cat4j.Const;
 import gmochmoch.cat4j.exception.CancelException;
 import gmochmoch.cat4j.option.IOption;
+import gmochmoch.cat4j.option.OptionContext;
 import gmochmoch.cat4j.option.Options;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class HelpOption implements IOption {
      * バージョンを取得して処理をキャンセルさせます
      */
     @Override
-    public void init() {
+    public void init(OptionContext context) {
         String desc = sortedOptions().stream().map(o -> {
             String so = Const.EMPTY;
             if (Objects.nonNull(o.shortOption)) {
@@ -45,7 +46,7 @@ public class HelpOption implements IOption {
                 lo = "--" + o.longOption;
             }
             return DESC_FORMAT.formatted(so, lo, o.description);
-        }).collect(Collectors.joining(System.lineSeparator()));
+        }).collect(Collectors.joining(Const.LINE_SEPARATOR));
         throw new CancelException(HELP_FORMAT.formatted(desc));
     }
 

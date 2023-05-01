@@ -1,6 +1,7 @@
 package gmochmoch.cat4j.option.impl;
 
 import gmochmoch.cat4j.option.IOption;
+import gmochmoch.cat4j.option.OptionContext;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,10 +17,12 @@ public class SqueezeBlankOption implements IOption {
     /**
      * 連続した空行を一つにまとめます
      *
-     * @param text 対象文字列
+     * @param text    対象文字列
+     * @param context オプション間で共有する情報
      * @return 変換後の文字列
      */
-    public String convert(String text) {
+    @Override
+    public String convert(String text, OptionContext context) {
         StringBuilder builder = new StringBuilder();
         Matcher matcher = LINE_PATTERN.matcher(text);
         int pos = 0;
