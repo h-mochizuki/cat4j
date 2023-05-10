@@ -1,9 +1,6 @@
 package gmochmoch.cat4j.option;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static gmochmoch.cat4j.Const.EMPTY;
 import static gmochmoch.cat4j.Const.LONG_DASH;
@@ -29,9 +26,14 @@ public class OptionHandler {
      */
     public void init(String... args) {
         Set<Options> optionSet = new LinkedHashSet<>();
+        boolean toRemains = false;
         for (String arg : args) {
-            if (EMPTY.equals(arg) || STD_INPUT_PARAM.equals(arg)) {
+            if (toRemains) {
+                remains.add(arg);
+            } else if (EMPTY.equals(arg) || STD_INPUT_PARAM.equals(arg)) {
                 remains.add(STD_INPUT_PARAM);
+            } else if (LONG_DASH.equals(arg)) {
+                toRemains = true;
             } else if (arg.startsWith(LONG_DASH)) {
                 Options opt = Options.findByLongOption(arg.substring(2));
                 optionSet.add(opt);
