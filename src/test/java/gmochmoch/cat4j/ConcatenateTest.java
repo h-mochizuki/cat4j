@@ -154,6 +154,17 @@ class ConcatenateTest {
     @Nested
     class OptionTest {
 
+        @DisplayName("--の後")
+        @Test
+        void after_double_dash() throws Exception {
+            monitor((out, err) -> {
+                assertFalse(new Concatenate().concatenate("--", "--help"));
+                assertEquals("", out.read(), "標準出力には何も表示されないこと");
+                assertLinesMatch(Stream.of("--help: No such file or directory"),
+                        err.output(), "エラーが表示されること");
+            });
+        }
+
         @DisplayName("存在しないオプション")
         @Test
         void no_such_option() throws Exception {
