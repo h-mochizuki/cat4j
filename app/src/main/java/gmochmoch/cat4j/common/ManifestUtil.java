@@ -79,4 +79,15 @@ public class ManifestUtil {
     public static String builtAt() {
         return getAttribute("Build-Timestamp", DF.format(new Date()));
     }
+
+    /**
+     * {@link ManifestUtil MANIFEST.MF}に記述された{@code Build-Jdk}より、jarをビルドしたJDKのバージョンを返します
+     * <p>
+     * ビルドされていない場合は実行環境のバージョンを返します
+     * 
+     * @return JDKバージョン
+     */
+    public static String buildJdk() {
+        return getAttribute("Build-Jdk", System.getProperty("java.version"));
+    }
 }
