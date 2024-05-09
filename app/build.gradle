@@ -5,19 +5,19 @@ plugins {
     id 'application'
 }
 
+version = '0.1'
+
 repositories {
     mavenCentral()
 }
 
 java {
-    // Java21を使用するよう設定
-    sourceCompatibility = '21'
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    // Java21を使用するよう設定
+    sourceCompatibility = '21'
 }
-
-tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
@@ -38,6 +38,7 @@ jar {
         // ビルド日時を保持するためのMANIFEST-MFを作成する設定
         attributes(
             'Implementation-Title': rootProject.name,
+            'Implementation-Version': version,
             'Created-By': GradleVersion.current(),
             'Build-Jdk': Jvm.current(),
             'Build-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
@@ -48,6 +49,7 @@ jar {
 distributions {
     main {
         distributionBaseName = rootProject.name
+        version = ""
     }
 }
 
