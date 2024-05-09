@@ -1,0 +1,56 @@
+import org.gradle.internal.jvm.Jvm
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+version = '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    // Java21を使用するよう設定
+    sourceCompatibility = '21'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+}
+
+application {
+    mainClass = 'gmochmoch.cat4j.Cat4j'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jar {
+    archiveFileName = "${rootProject.name}.jar"
+    manifest {
+        // ビルド日時を保持するためのMANIFEST-MFを作成する設定
+        attributes(
+            'Implementation-Title': rootProject.name,
+            'Implementation-Version': version,
+            'Created-By': GradleVersion.current(),
+            'Build-Jdk': Jvm.current(),
+            'Build-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
+        )
+    }
+}
+
+distributions {
+    main {
+        distributionBaseName = rootProject.name
+    }
+}
+
+startScripts {
+    applicationName = rootProject.name
+}
