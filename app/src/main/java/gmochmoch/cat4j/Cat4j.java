@@ -71,7 +71,7 @@ public class Cat4j {
         try (BufferedReader reader = new BufferedReader(getInputStreamReader(arg))) {
             char[] buffer = new char[BUFFER_SIZE];
             for (int size; (size = reader.read(buffer)) != -1; ) {
-                System.out.print(handler.convert(new String(buffer, 0, size)));
+                System.out.print(handler.transform(new String(buffer, 0, size)));
             }
             return true;
         } catch (SkipFileException | IOException e) {

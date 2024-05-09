@@ -24,7 +24,7 @@ public class NumberOption implements IOption {
      * @return 変換後文字列
      */
     @Override
-    public String convert(String text, OptionContext context) {
+    public String transform(String text, OptionContext context) {
         StringBuilder builder = new StringBuilder();
         Matcher matcher = LINE_PATTERN.matcher(text);
         int pos = 0;

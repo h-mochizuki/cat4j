@@ -17,7 +17,7 @@ public class ShowTabsOption implements IOption {
      * @return 変換後文字列
      */
     @Override
-    public String convert(String text, OptionContext context) {
+    public String transform(String text, OptionContext context) {
         return text.replaceAll("(?m)\t", Const.VISIBLE_TAB);
     }
 }

@@ -17,7 +17,7 @@ public class ShowNonPrintingOption implements IOption {
      * @return 変換後の文字列
      */
     @Override
-    public String convert(String text, OptionContext context) {
+    public String transform(String text, OptionContext context) {
         return text
                 .replaceAll("(\r)", Const.VISIBLE_LF)
                 .replaceAll("(\b)", Const.VISIBLE_BACKSPACE)

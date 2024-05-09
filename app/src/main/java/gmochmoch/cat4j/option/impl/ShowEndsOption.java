@@ -17,7 +17,7 @@ public class ShowEndsOption implements IOption {
      * @return 変換後文字列
      */
     @Override
-    public String convert(String text, OptionContext context) {
+    public String transform(String text, OptionContext context) {
         return text.replaceAll("(\r?\n)", Const.LITERAL_LINE_END + "$1");
     }
 }

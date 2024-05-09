@@ -77,9 +77,9 @@ public class OptionHandler {
      * @param text 対象文字列
      * @return 変換後の文字列
      */
-    public String convert(String text) {
+    public String transform(String text) {
         for (IOption opt : options) {
-            text = opt.convert(text, context);
+            text = opt.transform(text, context);
         }
         return text;
     }

@@ -20,7 +20,7 @@ public interface IOption {
      * @param context オプション間で共有する情報
      * @return 変換後の文字列
      */
-    default String convert(String text, OptionContext context) {
+    default String transform(String text, OptionContext context) {
         return text;
     }
 }
