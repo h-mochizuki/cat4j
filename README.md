@@ -1,7 +1,7 @@
 # Cat4j
 
 ## 概要
-このプログラムは、2024年の新人研修課題のサンプルとしてUNIXやLinuxのコマンドラインツールである `cat` をJavaで実装したものです。
+このプログラムは、新人研修課題のサンプルとしてUNIXやLinuxのコマンドラインツールである `cat` をJavaで実装したものです。
 
 ファイルや標準入力の中身を表示するために使われます。
 
@@ -30,19 +30,19 @@ java -cp lib/cat4j.jar gmochmoch.cat4j.Cat4j [オプション] [ファイル名1
 以下は、プログラムの実行例です。
 
 ```
-$ cat4j example.txt
+$ ./cat4j example.txt
 This is an example file.
 It contains some text.
 $
-$ cat4j - < example.txt
+$ ./cat4j - < example.txt
 This is an example file.
 It contains some text.
 $
-$ cat4j example1.txt example2.txt
+$ ./cat4j example1.txt example2.txt
 This is the contents of example1.txt.
 This is the contents of example2.txt.
 $
-$ echo "From echo." | cat4j example1.txt - example2.txt
+$ echo "From echo." | ./cat4j example1.txt - example2.txt
 This is the contents of example1.txt.
 From echo.
 This is the contents of example2.txt.
