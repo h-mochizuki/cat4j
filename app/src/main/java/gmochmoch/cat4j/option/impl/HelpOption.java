@@ -32,7 +32,7 @@ public class HelpOption implements IOption {
     private static final String DESC_FORMAT = "%5s %-20s %s";
 
     /**
-     * バージョンを取得して処理をキャンセルさせます
+     * ヘルプを取得して処理をキャンセルさせます
      */
     @Override
     public void init(OptionContext context) {
